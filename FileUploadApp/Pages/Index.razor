@@ -1,0 +1,116 @@
+﻿@using FileUploadApp.Services
+@using FileUploadApp.Data
+@inject IFileService fileService
+@inject IJSRuntime jsRuntime
+@page "/"
+
+<PageTitle>File Upload</PageTitle>
+
+<SurveyPrompt Title="FileUpload" />
+
+@if (errorMessage.Length > 0)
+{
+    <div class="alert alert-warning">
+        <strong>Warning!</strong> @errorMessage.
+    </div>
+}
+
+<EditForm Model="model" OnValidSubmit="OnUploadSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="row content">
+        <div class="col-md-2"><label for="Name">File</label></div>
+        <div class="col-md-3"><InputFile id="name" OnChange="@OnInputFileChange" /></div>
+    </div>
+    <div class="row content">
+        <div class="col-md-2"><label for="EmailAddress">Email</label></div>
+        <div class="col-md-3"><InputText id="EmailAddress" @bind-Value="model.Email" /></div>
+    </div>
+    <div class="row content">
+        <button type="submit">Submit</button>
+    </div>
+</EditForm>
+
+@if (fileUploadViewModels.Count > 0)
+{
+    @foreach (var attachment in fileUploadViewModels)
+    {
+        <a class="text-primary"><i class="fa-solid fa-paperclip"></i> @attachment.Name</a>
+        <span class="oi oi-eye" aria-hidden="true" @onclick="() => OnFileViewClick(attachment)"></span>
+
+    }
+}
+else
+{
+    <div class="alert alert-info">
+        <strong>No Files!</strong>
+    </div>
+}
+@if (displayMessage.Length > 0)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @displayMessage.
+    </div>
+}
+<br />
+
+    
+
+@code {
+    private string errorMessage = string.Empty;
+    private string displayMessage = string.Empty;
+    private long maxSize = 2025 * 15;
+    private string Message = "No fileselected";
+    private FileUploadModel model = new FileUploadModel();
+    private List<FileUploadViewModel> fileUploadViewModels = new();
+    private void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        model.File = e.File;
+        this.StateHasChanged();
+    }
+    private async void OnUploadSubmit()
+    {
+        try
+        {
+            string blobUrl = await fileService.UploadBlobAsync(model.File.Name, model.File.ContentType, model.File.OpenReadStream(maxSize), model.Email);
+            if (blobUrl != null)
+            {
+                FileUploadViewModel fileUploadViewModel = new FileUploadViewModel()
+                {
+                    Name = model.File.Name,
+                    Url = blobUrl
+                };
+
+                fileUploadViewModels.Add(fileUploadViewModel);
+                displayMessage = model.File.Name + " Uploaded!";
+            }
+            else
+            {
+                errorMessage = "File Upload failed, Please try again!";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "File Upload failed, Please try again!";
+        }
+        this.StateHasChanged();
+    }
+    private async void OnFileViewClick(FileUploadViewModel attachment)
+    {
+        try
+        {
+            var sasToken = await fileService.GetSASToken(attachment.Name);
+            if (sasToken != null)
+            {
+                string fileUrl = attachment.Url + "?" + sasToken;
+                await jsRuntime.InvokeAsync<object>("open", fileUrl, "_blank");
+            }
+
+        }
+        catch (Exception)
+        {
+            errorMessage = "Something went wrong! Please try again.";
+        }
+        this.StateHasChanged();
+    }
+}
