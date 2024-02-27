@@ -1,0 +1,17 @@
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\FileUploadApp.exe
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\appsettings.json
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\FileUploadApp.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\FileUploadApp.deps.json
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\FileUploadApp.runtimeconfig.json
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\FileUploadApp.pdb
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\Azure.Core.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\Azure.Storage.Blobs.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\Azure.Storage.Common.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\DocumentFormat.OpenXml.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\DocumentFormat.OpenXml.Framework.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\System.IO.Hashing.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\System.IO.Packaging.dll
+D:\Стажування\Reenbit\Task\FileUploadApp\obj\Release\net6.0\PubTmp\Out\System.Memory.Data.dll
